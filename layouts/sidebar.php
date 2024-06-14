@@ -1,12 +1,16 @@
-<?php
-include('connection.php');
-// Get refresh token from cookie
+<?php include('check_auth.php');
+// Get refresh token from cookie securely
 $refresh_token = isset($_COOKIE['refresh_token']) ? $_COOKIE['refresh_token'] : null;
-$get_user_infos = "SELECT * FROM users WHERE refresh_token = '$refresh_token'";
-$get_user_infos_result = mysqli_query($conn, $get_user_infos);
-$user_infos = mysqli_fetch_assoc($get_user_infos_result);
-
-if ($user_infos) {
+// Check if the refresh token exists
+if ($refresh_token) {
+  // Use a prepared statement to prevent SQL injection
+  $stmt = $conn->prepare("SELECT id, access_token, refresh_token, name, surname, email, profile_picture_url FROM users WHERE refresh_token = ?");
+  $stmt->bind_param('s', $refresh_token);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  // Fetch user information
+  if ($result && $result->num_rows > 0) {
+    $user_infos = $result->fetch_assoc();
     $user_id = $user_infos['id'];
     $access_token = $user_infos['access_token'];
     $refresh_token = $user_infos['refresh_token'];
@@ -14,10 +18,20 @@ if ($user_infos) {
     $surname = $user_infos['surname'];
     $email = $user_infos['email'];
     $profile_picture_url = $user_infos['profile_picture_url'];
+  } else {
+    // Handle case where no user is found
+    echo "No user found with the provided refresh token.";
+  }
+  // Close statement and result set
+  $stmt->close();
+  $result->free();
+} else {
+  // Handle case where refresh token is not provided
+  echo "Refresh token not provided.";
 }
-
+// Close the database connection
+$conn->close();
 ?>
-
 <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
   <span class="sr-only">Open sidebar</span>
   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +58,7 @@ if ($user_infos) {
           <div>
             <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
               <span class="sr-only">Open user menu</span>
-              <img class="w-8 h-8 rounded-full" src="<?php echo $profile_picture_url; ?>" alt="user photo">
+              <img class="w-8 h-8 rounded-full" src="<?php echo $profile_picture_url; ?>" alt="User">
             </button>
           </div>
           <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
@@ -67,7 +81,7 @@ if ($user_infos) {
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                <a href="logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
               </li>
             </ul>
           </div>
@@ -80,7 +94,6 @@ if ($user_infos) {
   <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
     <?php
     $current_page = basename($_SERVER['PHP_SELF']); // Get the current page file name
-
     // Define the class based on the current page
     if ($current_page == 'dashboard.php' || $current_page == 'tasks.php' || $current_page == 'calendar.php') {
       $link_class = 'dark:bg-gray-700'; // Common class for these pages
@@ -88,7 +101,6 @@ if ($user_infos) {
       $link_class = ''; // Default class if none of the above
     }
     ?>
-
     <ul class="space-y-2 font-medium">
       <li>
         <a href="dashboard.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group <?php echo ($current_page == 'dashboard.php') ? $link_class : ''; ?>">
@@ -155,7 +167,6 @@ if ($user_infos) {
     </ul>
   </div>
 </aside>
-
 <script>
   var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
   var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');

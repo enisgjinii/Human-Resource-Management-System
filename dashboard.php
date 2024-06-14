@@ -1,11 +1,5 @@
-<?php
-// Check if the refresh token is available in the cookie
-if (!isset($_COOKIE['refresh_token'])) {
-    // Redirect the user to another page, such as a login page
-    header("Location: index.php");
-    exit; // Stop further execution of the script
-}
-?>
+<?php include('check_auth.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
