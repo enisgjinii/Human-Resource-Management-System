@@ -32,12 +32,7 @@ if ($refresh_token) {
 // Close the database connection
 $conn->close();
 ?>
-<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-  <span class="sr-only">Open sidebar</span>
-  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-  </svg>
-</button>
+
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
   <div class="px-3 py-3 lg:px-5 lg:pl-3">
     <div class="flex items-center justify-between">
@@ -104,7 +99,7 @@ $conn->close();
     <ul class="space-y-2 font-medium">
       <li>
         <a href="dashboard.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group <?php echo ($current_page == 'dashboard.php') ? $link_class : ''; ?>">
-          <i class="fi fi-rr-apps"></i>
+          <i class="fi fi-rr-home"></i>
           <span class="ms-3">Dashboard</span>
         </a>
       </li>
@@ -116,24 +111,11 @@ $conn->close();
         </a>
       </li>
       <li>
-        <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-          <i class="fi fi-rr-employee-man"></i>
-          <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Employees</span>
-          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-          </svg>
-        </button>
-        <ul id="dropdown-example" class="hidden py-2 space-y-2">
-          <li>
-            <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
-          </li>
-          <li>
-            <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
-          </li>
-          <li>
-            <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
-          </li>
-        </ul>
+        <a href="employees.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group <?php echo ($current_page == 'employees.php') ? $link_class : ''; ?>">
+          <i class="fi fi-rr-users"></i>
+          <span class="flex-1 ms-3 whitespace-nowrap">Employees</span>
+          <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-red-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+        </a>
       </li>
       <li>
         <a href="tasks.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group <?php echo ($current_page == 'tasks.php') ? $link_class : ''; ?>">
@@ -170,35 +152,71 @@ $conn->close();
 <script>
   var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
   var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-  // Change the icons inside the button based on previous settings
-  if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    themeToggleLightIcon.classList.remove('hidden');
-  } else {
-    themeToggleDarkIcon.classList.remove('hidden');
-  }
   var themeToggleBtn = document.getElementById('theme-toggle');
-  themeToggleBtn.addEventListener('click', function() {
-    // toggle icons inside button
-    themeToggleDarkIcon.classList.toggle('hidden');
-    themeToggleLightIcon.classList.toggle('hidden');
-    // if set via local storage previously
-    if (localStorage.getItem('color-theme')) {
-      if (localStorage.getItem('color-theme') === 'light') {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-      }
-      // if NOT set via local storage previously
+
+  // Apply theme based on the input parameter
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+      themeToggleDarkIcon.classList.add('hidden');
+      localStorage.setItem('color-theme', 'dark');
+      themeToggleBtn.setAttribute('aria-label', 'Switch to light theme');
     } else {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
+      document.documentElement.classList.remove('dark');
+      themeToggleLightIcon.classList.add('hidden');
+      themeToggleDarkIcon.classList.remove('hidden');
+      localStorage.setItem('color-theme', 'light');
+      themeToggleBtn.setAttribute('aria-label', 'Switch to dark theme');
+    }
+  }
+
+  // Check if the current time is night time
+  function isNightTime() {
+    var hour = new Date().getHours();
+    return hour >= 18 || hour < 6;
+  }
+
+  // Detect and apply changes in the system color scheme
+  function detectSystemColorSchemeChange() {
+    var darkSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    darkSchemeQuery.addEventListener('change', (e) => {
+      if (e.matches) {
+        applyTheme('dark');
       } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
+        applyTheme('light');
       }
+    });
+  }
+
+  // Initialize the theme based on local storage, system preferences, or time of day
+  function initializeTheme() {
+    var storedTheme = localStorage.getItem('color-theme');
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      applyTheme('dark');
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      applyTheme('light');
+    } else if (isNightTime()) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+  }
+
+  // Toggle the theme when the button is clicked
+  themeToggleBtn.addEventListener('click', function() {
+    if (document.documentElement.classList.contains('dark')) {
+      applyTheme('light');
+    } else {
+      applyTheme('dark');
     }
   });
+
+  // Apply the initial theme
+  initializeTheme();
+
+  // Detect system color scheme changes
+  detectSystemColorSchemeChange();
 </script>

@@ -43,7 +43,12 @@
 
 <body>
     <?php include('layouts/sidebar.php') ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="grid grid-cols-3 gap-4 mb-4">
+        </div>
+
+        <?php include('layouts/footer.php') ?>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 
 </html>

@@ -26,5 +26,33 @@
         "logout_time": "2024-06-13 23:04:02",
         "ip_address": "::1",
         "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/125.0.0.0 Safari\/537.36 Edg\/125.0.0.0"
+    },
+    {
+        "session_id": "83r7tg9qtg96nmrtmfv64lg7vg",
+        "user_data": [],
+        "logout_time": "2024-06-14 15:09:35",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/125.0.0.0 Safari\/537.36 Edg\/125.0.0.0"
+    },
+    {
+        "session_id": "960odc5ns8du8hp3r9p8jojd8h",
+        "user_data": [],
+        "logout_time": "2024-06-14 08:27:49",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/125.0.0.0 Safari\/537.36 Edg\/125.0.0.0"
+    },
+    {
+        "session_id": "sjhthflto279nme3ou55u47r08",
+        "user_data": [],
+        "logout_time": "2024-06-14 20:36:35",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/125.0.0.0 Safari\/537.36 Edg\/125.0.0.0"
+    },
+    {
+        "session_id": "2pff1pqkbu6kvmd0fdmm2o0uup",
+        "user_data": [],
+        "logout_time": "2024-06-14 20:48:22",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 6.0; Nexus 5 Build\/MRA58N) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/125.0.0.0 Mobile Safari\/537.36 Edg\/125.0.0.0"
     }
 ]
