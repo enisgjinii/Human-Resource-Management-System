@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52c571b713bb5f62dce402e2d6c4fb5a",
+    "content-hash": "98598dbbfad0043ba2838836854f4966",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -519,6 +519,79 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "fabian-beiner/todoist-php-api-library",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FabianBeiner/Todoist-PHP-API-Library.git",
+                "reference": "a82b48b002f7651aa748295c49ae938ff3368a74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FabianBeiner/Todoist-PHP-API-Library/zipball/a82b48b002f7651aa748295c49ae938ff3368a74",
+                "reference": "a82b48b002f7651aa748295c49ae938ff3368a74",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.5",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^v3.12",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "FabianBeiner\\Todoist\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabian Beiner",
+                    "email": "fb@fabianbeiner.de",
+                    "homepage": "https://fabianbeiner.de",
+                    "role": "Creator, Developer"
+                },
+                {
+                    "name": "Balazs Csaba",
+                    "email": "balazscsaba2006@gmail.com",
+                    "homepage": "https://www.humandirect.eu",
+                    "role": "Contributor, Developer"
+                },
+                {
+                    "name": "Vito Castellano",
+                    "email": "castellano.vito@gmail.com",
+                    "homepage": "https://www.facile.it",
+                    "role": "Contributor, Developer"
+                }
+            ],
+            "description": "A PHP client library that provides a native interface to the official Todoist REST API.",
+            "keywords": [
+                "API-Client",
+                "api",
+                "client",
+                "library",
+                "php",
+                "sdk",
+                "sdk-php",
+                "todoist",
+                "todoist-api",
+                "todoist-sdk"
+            ],
+            "support": {
+                "docs": "https://github.com/FabianBeiner/Todoist-PHP-API-Library/wiki",
+                "issues": "https://github.com/FabianBeiner/Todoist-PHP-API-Library/issues",
+                "source": "https://github.com/FabianBeiner/Todoist-PHP-API-Library/releases"
+            },
+            "time": "2022-12-20T16:55:49+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -3348,6 +3421,65 @@
                 }
             ],
             "time": "2024-06-06T01:19:34+00:00"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v14.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30",
+                "reference": "7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.5.0",
+                "phpstan/phpstan": "^1.2",
+                "phpunit/phpunit": "^5.7 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/stripe/stripe-php/issues",
+                "source": "https://github.com/stripe/stripe-php/tree/v14.10.0"
+            },
+            "time": "2024-06-13T21:04:47+00:00"
         },
         {
             "name": "symfony/clock",

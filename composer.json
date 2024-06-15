@@ -1,6 +1,8 @@
 {
     "require": {
         "google/apiclient": "2.16.0",
-        "rappasoft/laravel-livewire-tables": "^3.2"
+        "rappasoft/laravel-livewire-tables": "^3.2",
+        "stripe/stripe-php": "^14.10",
+        "fabian-beiner/todoist-php-api-library": "^2.0"
     }
 }

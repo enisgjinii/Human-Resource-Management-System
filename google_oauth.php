@@ -9,6 +9,7 @@ $client->setAccessType('offline'); // Ensure offline access to get a refresh tok
 $client->setIncludeGrantedScopes(true); // Incremental auth
 $client->addScope("email");
 $client->addScope("profile");
+// $client->addScope("https://www.googleapis.com/auth/calendar");
 if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
     $client->setAccessToken($token['access_token']);
@@ -26,6 +27,7 @@ if (isset($_GET['code'])) {
     $picture = $google_account_info->picture;
     // Set refresh token in a cookie
     setcookie('refresh_token', $refreshToken, time() + (10 * 365 * 24 * 60 * 60), '/'); // Expires in 10 years
+    setcookie('user_email', $email, time() + (10 * 365 * 24 * 60 * 60), '/'); // Expires in 10 years
     require 'db.php';
     // Check if the user already exists in the database
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
