@@ -44,6 +44,7 @@ $conn->close();
           </svg>
         </button>
         <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+          <img src="images/logo.png" class="h-12 w-12 mr-3" alt="Flowbite Logo">
           <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">TalentFlow
           </span>
         </a>
@@ -91,7 +92,7 @@ $conn->close();
     $current_page = basename($_SERVER['PHP_SELF']); // Get the current page file name
     // Define the class based on the current page
     if ($current_page == 'dashboard.php' || $current_page == 'tasks.php' || $current_page == 'calendar.php') {
-      $link_class = 'dark:bg-gray-700'; // Common class for these pages
+      $link_class = 'bg-gray-100 dark:bg-gray-700'; // Common class for these pages
     } else {
       $link_class = ''; // Default class if none of the above
     }

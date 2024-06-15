@@ -1,7 +1,6 @@
 <?php include('check_auth.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
     <!--Responsive Extension Datatables CSS-->
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 </head>
-
 <body>
     <?php include('layouts/sidebar.php') ?>
     <div class="p-4 sm:ml-64 dark:bg-gray-800 mt-14">
@@ -35,21 +33,7 @@
                 <li class="me-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 rounded-t-lg" id="performance-reviews-tab" data-tabs-target="#performance-reviews" type="button" role="tab" aria-controls="performance-reviews" aria-selected="false">Performance Reviews</button>
                 </li>
-                <li class="me-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="training-development-tab" data-tabs-target="#training-development" type="button" role="tab" aria-controls="training-development" aria-selected="false">Training & Development</button>
-                </li>
-                <li class="me-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-                </li>
-                <li class="me-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</button>
-                </li>
-                <li class="me-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
-                </li>
-                <li role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Contacts</button>
-                </li>
+            `
             </ul>
         </div>
         <div id="default-tab-content">
@@ -163,5 +147,4 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
-
 </html>
