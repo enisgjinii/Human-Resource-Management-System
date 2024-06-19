@@ -54,5 +54,19 @@
         "logout_time": "2024-06-16 01:31:23",
         "ip_address": "::1",
         "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/126.0.0.0 Safari\/537.36 Edg\/126.0.0.0"
+    },
+    {
+        "session_id": "2bt9env58bn2n40iusn838jp7t",
+        "user_data": [],
+        "logout_time": "2024-06-17 09:21:27",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/126.0.0.0 Safari\/537.36 Edg\/126.0.0.0"
+    },
+    {
+        "session_id": "de7e0s7eq35gl4472h8okk6iqi",
+        "user_data": [],
+        "logout_time": "2024-06-18 20:58:52",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/126.0.0.0 Safari\/537.36 Edg\/126.0.0.0"
     }
 ]

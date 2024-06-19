@@ -41,6 +41,7 @@
     </div>
     <?php include('layouts/footer.php') ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="theme.js"></script>
 </body>
 
 </html>
