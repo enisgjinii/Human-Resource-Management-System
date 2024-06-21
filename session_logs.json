@@ -68,5 +68,12 @@
         "logout_time": "2024-06-18 20:58:52",
         "ip_address": "::1",
         "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/126.0.0.0 Safari\/537.36 Edg\/126.0.0.0"
+    },
+    {
+        "session_id": "d62urbcmgo6r452phnfkirotfa",
+        "user_data": [],
+        "logout_time": "2024-06-21 22:02:53",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/126.0.0.0 Safari\/537.36 Edg\/126.0.0.0"
     }
 ]

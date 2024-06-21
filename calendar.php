@@ -132,10 +132,10 @@ try {
     </script>
 </head>
 
-<body>
+<body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200">
     <!-- Include the sidebar layout -->
     <?php include('layouts/sidebar.php') ?>
-    <div class="py-12 px-5 sm:ml-64 mt-10 bg-white dark:bg-gray-800">
+    <div class="py-12 px-5 sm:ml-64 mt-10">
         <!-- Border and shadow styling for the content box -->
         <div class="border border-black dark:border-gray-600 px-8 pt-5 rounded-xl bg-white dark:bg-gray-800 dark:text-white">
             <!-- Grid layout for responsive design -->

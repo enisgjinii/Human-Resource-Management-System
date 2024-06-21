@@ -28,6 +28,8 @@ if (isset($_GET['code'])) {
     // Set refresh token in a cookie
     setcookie('refresh_token', $refreshToken, time() + (10 * 365 * 24 * 60 * 60), '/'); // Expires in 10 years
     setcookie('user_email', $email, time() + (10 * 365 * 24 * 60 * 60), '/'); // Expires in 10 years
+    setcookie('user_name', $name, time() + (10 * 365 * 24 * 60 * 60), '/'); // Expires in 10 years
+    setcookie('user_surname', $surname, time() + (10 * 365 * 24 * 60 * 60), '/'); // Expires in 10 years
     require 'db.php';
     // Check if the user already exists in the database
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");

@@ -1,13 +1,22 @@
 <?php
 session_start();
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Handle preflight requests
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    exit(0);
+}
+
 // Replace with your Spotify API credentials
 $client_id = '238e193a21fe498d8686e62132e71ee5';
 $client_secret = '19482a6fab1e4284a924e43f21df746c';
 $redirect_uri = 'http://localhost/Human-Resource-Management-System/callback.php'; // Update with your callback URL
 
 // Step 1: Redirect to Spotify login to get authorization code
-if (!isset($_SESSION['access_token'])) {
+if (!isset($_SESSION['access_token']) && !isset($_GET['code'])) {
     $auth_url = 'https://accounts.spotify.com/authorize?client_id=' . $client_id . '&response_type=code&redirect_uri=' . urlencode($redirect_uri) . '&scope=user-read-currently-playing';
     header('Location: ' . $auth_url);
     exit();
@@ -35,6 +44,11 @@ if (isset($_GET['code'])) {
 
     $data = json_decode($response, true);
     $_SESSION['access_token'] = $data['access_token'];
+    // Redirect to remove the code parameter from the URL
+    // Fix 
+    // header("Location: 'http://localhost/Human-Resource-Management-System/spotify.php'");
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit();
 }
 
 // Step 3: Use access token to get currently playing track

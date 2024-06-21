@@ -1,4 +1,3 @@
-<?php include('check_auth.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200">
     <?php include('layouts/sidebar.php') ?>
     <div class="p-4 sm:ml-64 dark:bg-gray-800 mt-14">
         <div class="mt-4">
@@ -223,6 +222,7 @@
             paginatedItems.forEach(function(employee) {
                 const row = `
                 <tr class="bg-white dark:bg-gray-800 dark:border-gray-200">
+                 <td class="py-3 px-6">${highlightSearch(employee.p)}</td>
                     <td class="py-3 px-6">${highlightSearch(employee.first_name + ' ' + employee.last_name)}</td>
                     <td class="py-3 px-6">${highlightSearch(employee.email)}</td>
                     <td class="py-3 px-6">${highlightSearch(employee.phone)}</td>
@@ -232,8 +232,8 @@
                     <td class="py-3 px-6">${highlightSearch(employee.hire_date)}</td>
                     <td class="py-3 px-6">${highlightSearch(employee.salary)}</td>
                     <td class="py-3 px-6">
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-1 px-3 mr-2">Edit</button>
-                        <button class="bg-red-500 hover:bg-red-600 text-white rounded-lg py-1 px-3">Delete</button>
+                        <a href="edit_employee.php?id=${employee.id}&name=${employee.first_name} ${employee.last_name}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-1 px-3 mr-2">Edit</a>
+                        <a class="bg-red-500 hover:bg-red-600 text-white rounded-lg py-1 px-3">Delete</a>
                     </td>
                 </tr>
             `;
