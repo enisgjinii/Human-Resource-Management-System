@@ -236,16 +236,7 @@ $conn->close();
         ['url' => 'employees.php', 'icon' => 'fi fi-rr-users', 'label' => 'Employees', 'status' => 'Pro'],
         ['url' => 'calendar.php', 'icon' => 'fi fi-rr-calendar-lines', 'label' => 'Calendar'],
         ['url' => 'tasks.php', 'icon' => 'fi fi-rr-list-check', 'label' => 'Tasks', 'notificationCount' => 3],
-        ['url' => 'employee_directory.php', 'icon' => 'fi fi-rr-address-book', 'label' => 'Employee Directory'],
         ['url' => 'recruitment.php', 'icon' => 'fi fi-rr-briefcase', 'label' => 'Recruitment & Onboarding'],
-        ['url' => 'performance.php', 'icon' => 'fi fi-rr-star', 'label' => 'Performance Management'],
-        ['url' => 'leave_management.php', 'icon' => 'fi fi-rr-calendar-check', 'label' => 'Leave Management'],
-        ['url' => 'benefits.php', 'icon' => 'fi fi-rr-dollar', 'label' => 'Benefits Administration'],
-        ['url' => 'training.php', 'icon' => 'fi fi-rr-book', 'label' => 'Training & Development'],
-        ['url' => 'payroll.php', 'icon' => 'fi fi-rr-money', 'label' => 'Payroll & Compensation'],
-        ['url' => 'compliance.php', 'icon' => 'fi fi-rr-memo-circle-check', 'label' => 'Compliance & Policies'],
-        ['url' => 'analytics.php', 'icon' => 'fi fi-rr-chart-simple', 'label' => 'Analytics & Reporting'],
-        ['url' => 'invoices.php', 'icon' => 'fi fi-rr-receipt', 'label' => 'Invoices'],
         ['url' => 'settings.php', 'icon' => 'fi fi-rr-settings', 'label' => 'Settings'],
       ];
       foreach ($menuItems as $item) {

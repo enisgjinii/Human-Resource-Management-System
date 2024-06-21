@@ -222,7 +222,6 @@
             paginatedItems.forEach(function(employee) {
                 const row = `
                 <tr class="bg-white dark:bg-gray-800 dark:border-gray-200">
-                 <td class="py-3 px-6">${highlightSearch(employee.p)}</td>
                     <td class="py-3 px-6">${highlightSearch(employee.first_name + ' ' + employee.last_name)}</td>
                     <td class="py-3 px-6">${highlightSearch(employee.email)}</td>
                     <td class="py-3 px-6">${highlightSearch(employee.phone)}</td>
