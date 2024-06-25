@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
     <link rel="icon" type="image/x-icon" href="images/logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 </head>
-
 <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200">
     <?php include('layouts/sidebar.php') ?>
     <div class="p-4 sm:ml-64 dark:bg-gray-800 mt-14">
@@ -159,7 +157,11 @@
             });
             // Export CSV button click event handler
             document.getElementById('export-csv').addEventListener('click', function() {
-                exportTableToCSV('employees.csv');
+                // Add datetime to filename
+                const filename = `employees-${new Date().toISOString()}.csv`;
+                // Call exportTableToCSV function
+                exportTableToCSV(filename);
+                // exportTableToCSV('employees.csv');
             });
             // Length menu change event listener
             document.getElementById('length-menu').addEventListener('change', function() {
@@ -192,7 +194,6 @@
                 displayTable();
             });
         });
-
         function fetchEmployees() {
             showLoading();
             const xhr = new XMLHttpRequest();
@@ -212,7 +213,6 @@
             };
             xhr.send();
         }
-
         function displayTable() {
             const tableBody = document.getElementById('employees-table-body');
             tableBody.innerHTML = '';
@@ -240,7 +240,6 @@
             });
             document.getElementById('page-info').textContent = `Page ${currentPage} of ${Math.ceil(filteredEmployees.length / rowsPerPage)}`;
         }
-
         function highlightSearch(text) {
             const searchTerm = document.getElementById('search').value.toLowerCase();
             if (searchTerm.length === 0) {
@@ -249,7 +248,6 @@
             const regex = new RegExp(searchTerm, 'gi');
             return text.replace(regex, match => `<span class="bg-yellow-200 rounded px-1">${match}</span>`);
         }
-
         function filterEmployees(searchTerm) {
             showLoading();
             filteredEmployees = employees.filter(function(employee) {
@@ -261,7 +259,6 @@
             displayTable();
             hideLoading();
         }
-
         function exportTableToCSV(filename) {
             const csv = [];
             const rows = document.querySelectorAll('table tr');
@@ -282,15 +279,12 @@
             downloadLink.click();
             document.body.removeChild(downloadLink);
         }
-
         function showLoading() {
             document.getElementById('loading').classList.remove('hidden');
         }
-
         function hideLoading() {
             document.getElementById('loading').classList.add('hidden');
         }
-
         function showError(message) {
             const errorElement = document.getElementById('error-message');
             errorElement.textContent = message;
@@ -304,5 +298,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="theme.js"></script>
 </body>
-
 </html>
