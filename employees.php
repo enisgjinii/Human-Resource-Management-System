@@ -13,8 +13,9 @@
     <style>
         .export-icon {
             display: none;
-            transition: opacity 0.3s ease;
-            opacity: 0;
+            vertical-align: middle;
+            /* Initially hide the reload icon */
+        }
             /* Initially hide the reload icon */
         }
 
