@@ -185,9 +185,9 @@
                 exportTableToCSV(filename);
 
                 // After exporting, hide reload icon and show text again
-                setTimeout(() => {
+                exportTableToCSV(filename).then(() => {
                     this.classList.remove('exporting');
-                }, 2000); // Adjust the timeout as per your actual export duration
+                });
             });
             // Length menu change event listener
             document.getElementById('length-menu').addEventListener('change', function() {
