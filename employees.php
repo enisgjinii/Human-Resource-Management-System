@@ -10,6 +10,22 @@
     <!-- Add favicon -->
     <link rel="icon" type="image/x-icon" href="images/logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <style>
+        .export-icon {
+            display: none;
+            /* Initially hide the reload icon */
+        }
+
+        .exporting .export-text {
+            display: none;
+            /* Hide text while exporting */
+        }
+
+        .exporting .export-icon {
+            display: inline-block;
+            /* Show reload icon while exporting */
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200">
@@ -20,9 +36,10 @@
                 <i class="fi fi-rr-add mr-2"></i>
                 Add Employee
             </button>
+            <!-- Export CSV Button -->
             <button id="export-csv" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                <i class="fi fi-rr-file-download mr-2"></i>
-                Export CSV
+                <span class="export-text">Export CSV</span>
+                <i class="export-icon fi fi-rr-refresh"></i>
             </button>
             <div class="flex justify-between mb-2">
                 <div class="items-center">
@@ -157,13 +174,20 @@
                     filterEmployees(searchTerm);
                 }, 300);
             });
-            // Export CSV button click event handler
             document.getElementById('export-csv').addEventListener('click', function() {
                 // Add datetime to filename
                 const filename = `employees-${new Date().toISOString()}.csv`;
+
+                // Show reload icon and hide text
+                this.classList.add('exporting');
+
                 // Call exportTableToCSV function
                 exportTableToCSV(filename);
-                // exportTableToCSV('employees.csv');
+
+                // After exporting, hide reload icon and show text again
+                setTimeout(() => {
+                    this.classList.remove('exporting');
+                }, 2000); // Adjust the timeout as per your actual export duration
             });
             // Length menu change event listener
             document.getElementById('length-menu').addEventListener('change', function() {
@@ -266,6 +290,7 @@
             hideLoading();
         }
 
+        // Function to export table to CSV (unchanged from your original code)
         function exportTableToCSV(filename) {
             const csv = [];
             const rows = document.querySelectorAll('table tr');
