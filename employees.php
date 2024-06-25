@@ -13,6 +13,8 @@
     <style>
         .export-icon {
             display: none;
+            transition: opacity 0.3s ease;
+            opacity: 0;
             /* Initially hide the reload icon */
         }
 
