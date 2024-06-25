@@ -1,12 +1,40 @@
 <?php
 include('connection.php');
-include('check_auth.php');
+include('check_document_password.php'); // Adjust this line as per your actual check document password script
+
 if (isset($_GET['id'])) {
-    $id = mysqli_real_escape_string($conn, $_GET['id']);
-    $query = "SELECT * FROM documents WHERE id = '$id'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) == 1) {
-        $document = mysqli_fetch_assoc($result);
+    $document_id = $_GET['id'];
+
+    // Retrieve document details
+    $query = "SELECT * FROM documents WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $document_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 1) {
+        $document = $result->fetch_assoc();
+
+        // Check if password is required
+        if ($document['password'] !== null) {
+            // Password required, check if it's provided
+            if (!isset($_POST['password'])) {
+                // Show password prompt
+                echo '<form method="POST">
+                        <input type="password" name="password" required>
+                        <input type="submit" value="Submit Password">
+                      </form>';
+                exit;
+            } else {
+                // Verify password
+                if (!checkDocumentPassword($conn, $document_id, $_POST['password'])) {
+                    echo "Incorrect password.";
+                    exit;
+                }
+            }
+        }
+
+        // Password check passed or not required, proceed with download
         $file_path = 'uploads/' . $document['file_name'];
         if (file_exists($file_path)) {
             // Set appropriate headers based on file type
