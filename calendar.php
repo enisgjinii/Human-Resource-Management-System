@@ -61,7 +61,6 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,11 +79,44 @@ try {
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                    right: 'customRefreshButton weekendsToggle dayGridMonth,timeGridWeek,timeGridDay,listMonth'
                 },
-                themeSystem: 'bootstrap',
+                themeSystem: 'bootstrap5',
                 events: <?php echo json_encode($events); ?>,
                 editable: true,
+                customButtons: {
+                    customRefreshButton: {
+                        text: 'Refresh',
+                        click: () => {
+                            fetch('get_events.php')
+                                .then(response => response.json())
+                                .then(data => {
+                                    calendar.removeAllEvents();
+                                    calendar.addEventSource(data);
+                                })
+                                .catch(error => console.error('Error fetching events:', error));
+                        }
+                    },
+                    weekendsToggle: {
+                        text: 'Toggle Weekends',
+                        click: () => {
+                            const weekends = calendar.getOption('weekends');
+                            calendar.setOption('weekends', !weekends);
+                        }
+                    },
+                    pastEventsToggle: {
+                        text: 'Toggle Past Events',
+                        click: () => {
+                            const currentDate = new Date();
+                            const events = calendar.getEvents();
+                            events.forEach(event => {
+                                if (new Date(event.start) < currentDate) {
+                                    event.setProp('display', event.display === 'none' ? 'auto' : 'none');
+                                }
+                            });
+                        }
+                    }
+                },
                 eventClick: ({
                     event
                 }) => {
@@ -131,17 +163,14 @@ try {
         });
     </script>
 </head>
-
 <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200">
     <!-- Include the sidebar layout -->
     <?php include('layouts/sidebar.php') ?>
-    <div class="py-12 px-5 sm:ml-64 mt-10">
-        <!-- Border and shadow styling for the content box -->
-        <div class="border border-black dark:border-gray-600 px-8 pt-5 rounded-xl bg-white dark:bg-gray-800 dark:text-white">
-            <!-- Grid layout for responsive design -->
+    <div class="py-12 px-5 sm:ml-64 mt-10 z-0">
+        <div class=" border border-black dark:border-gray-600 px-8 pt-5 rounded-xl bg-white dark:bg-gray-800 dark:text-white">
             <div class="grid grid-cols-3 xl:grid-cols-3 xl:gap-4">
-                <!-- Main content area spanning 2 columns on extra-large screens -->
                 <div class="col-span-3 xl:col-span-2 me-5">
+                    <button id="refreshButton" class="btn btn-primary mb-4" style="display: none;">Refresh Calendar</button>
                     <!-- Container for displaying calendars -->
                     <?php
                     if (!empty($subscriptions->data)) {
@@ -247,11 +276,8 @@ try {
                 </div>
             </div>
         </div>
-        <!-- Include the footer layout (commented out) -->
-        <!-- <?php include('layouts/footer.php') ?> -->
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="theme.js"></script>
 </body>
-
 </html>
