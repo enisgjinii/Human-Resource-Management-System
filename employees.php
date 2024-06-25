@@ -121,7 +121,7 @@
                                 <th class="py-3 px-6 text-left">Department</th>
                                 <th class="py-3 px-6 text-left">Hire date</th>
                                 <th class="py-3 px-6 text-left">Salary</th>
-                                <th class="py-3 px-6 text-left">Action</th>
+                                <th class="py-3 px-6 text-left">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="employees-table-body">
