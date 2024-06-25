@@ -13,9 +13,6 @@
     <style>
         .export-icon {
             display: none;
-            vertical-align: middle;
-            /* Initially hide the reload icon */
-        }
             /* Initially hide the reload icon */
         }
 
@@ -178,19 +175,19 @@
                 }, 300);
             });
             document.getElementById('export-csv').addEventListener('click', function() {
-                // Show reload icon and hide text
-                this.classList.add('exporting');
-
                 // Add datetime to filename
                 const filename = `employees-${new Date().toISOString()}.csv`;
+
+                // Show reload icon and hide text
+                this.classList.add('exporting');
 
                 // Call exportTableToCSV function
                 exportTableToCSV(filename);
 
                 // After exporting, hide reload icon and show text again
-                exportTableToCSV(filename).then(() => {
+                setTimeout(() => {
                     this.classList.remove('exporting');
-                });
+                }, 2000); // Adjust the timeout as per your actual export duration
             });
             // Length menu change event listener
             document.getElementById('length-menu').addEventListener('change', function() {
