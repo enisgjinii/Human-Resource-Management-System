@@ -119,7 +119,7 @@
                                 <th class="py-3 px-6 text-left">Address</th>
                                 <th class="py-3 px-6 text-left">Position</th>
                                 <th class="py-3 px-6 text-left">Department</th>
-                                <th class="py-3 px-6 text-left">Hire date</th>
+                                Hire Date
                                 <th class="py-3 px-6 text-left">Salary</th>
                                 <th class="py-3 px-6 text-left">Actions</th>
                             </tr>
