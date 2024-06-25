@@ -175,11 +175,11 @@
                 }, 300);
             });
             document.getElementById('export-csv').addEventListener('click', function() {
-                // Add datetime to filename
-                const filename = `employees-${new Date().toISOString()}.csv`;
-
                 // Show reload icon and hide text
                 this.classList.add('exporting');
+
+                // Add datetime to filename
+                const filename = `employees-${new Date().toISOString()}.csv`;
 
                 // Call exportTableToCSV function
                 exportTableToCSV(filename);
